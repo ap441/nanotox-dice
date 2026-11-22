@@ -49,14 +49,22 @@ data/raw/*.xls
 # Never ignore .gitkeep files in data or results
 !**/data/**/.gitkeep
 !**/results/**/.gitkeep
+!**/models/**/.gitkeep
 !**/.gitkeep
+
+# Track results tables
+!results/tables/*.csv
 
 # Model weights / serialized artifacts
 *.pkl
 *.joblib
+models/*.joblib
 *.pt
 *.pth
 *.onnx
+
+# Training runs / temporary metrics
+catboost_info/
 
 # Environment variables & secrets
 .env

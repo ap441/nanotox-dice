@@ -1,0 +1,13 @@
+task,model,split_type,roc_auc_mean,roc_auc_std,pr_auc_mean,pr_auc_std,f1_mean,f1_std,balanced_accuracy_mean,balanced_accuracy_std,precision_mean,precision_std,recall_mean,recall_std
+cytotox,random_forest,5fold_cv,0.695,0.0686,0.7882,0.022,0.7537,0.0346,0.6204,0.0514,0.7065,0.0693,0.815,0.0379
+cytotox,random_forest,holdout_test,0.7279,0.0,0.8682,0.0,0.8007,0.0,0.5892,0.0,0.7572,0.0,0.8494,0.0
+cytotox,xgboost,5fold_cv,0.6652,0.095,0.768,0.0388,0.7415,0.0156,0.6154,0.0694,0.7195,0.0437,0.7689,0.0373
+cytotox,xgboost,holdout_test,0.6945,0.0,0.8576,0.0,0.751,0.0,0.605,0.0,0.776,0.0,0.7277,0.0
+cytotox,catboost,5fold_cv,0.6897,0.0863,0.7774,0.0305,0.7456,0.0133,0.6467,0.072,0.7529,0.0525,0.7453,0.0521
+cytotox,catboost,holdout_test,0.6765,0.0,0.8437,0.0,0.7506,0.0,0.6105,0.0,0.7802,0.0,0.7232,0.0
+seltox,random_forest,5fold_cv,0.4954,0.0656,0.6654,0.0683,0.6744,0.056,0.5111,0.0584,0.6476,0.0857,0.7207,0.0882
+seltox,random_forest,holdout_test,0.4183,0.0,0.5948,0.0,0.6006,0.0,0.4815,0.0,0.6351,0.0,0.5697,0.0
+seltox,xgboost,5fold_cv,0.4421,0.0951,0.6182,0.0599,0.6471,0.0872,0.4859,0.1036,0.6314,0.1026,0.686,0.1273
+seltox,xgboost,holdout_test,0.4745,0.0,0.6672,0.0,0.6531,0.0,0.4686,0.0,0.6292,0.0,0.6788,0.0
+seltox,catboost,5fold_cv,0.394,0.0743,0.5824,0.0715,0.6577,0.0544,0.4887,0.067,0.6341,0.0751,0.6979,0.0869
+seltox,catboost,holdout_test,0.4412,0.0,0.5912,0.0,0.6977,0.0,0.5322,0.0,0.6704,0.0,0.7273,0.0
