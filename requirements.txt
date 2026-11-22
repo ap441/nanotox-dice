@@ -1,0 +1,15 @@
+numpy
+pandas
+scipy
+scikit-learn
+xgboost
+catboost
+dice-ml
+shap
+matplotlib
+seaborn
+pyyaml
+openpyxl
+jupyter
+ipykernel
+pytest

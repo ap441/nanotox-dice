@@ -1,0 +1,64 @@
+# Safe-by-Design Nanotoxicology with Constrained Counterfactuals (DiCE)
+# Central Experiment & Pipeline Configuration
+
+project:
+  name: "nanotox-dice"
+  description: "Safe-by-Design nanoparticle engineering via constrained counterfactual explanations (DiCE)"
+  version: "0.1.0"
+
+experiment:
+  random_seed: 42
+  test_size: 0.20
+  cv_folds: 5
+
+features:
+  # Fixed features that cannot be modified post-synthesis or during redesign
+  immutable_features:
+    - "core_material"
+    - "bacterial_strain"
+
+  # Tunable design levers that can be modified within physical/chemical bounds
+  mutable_features:
+    - "particle_size_nm"
+    - "zeta_potential_mv"
+    - "surface_coating"
+
+  # Configurable features: can be toggled mutable or immutable depending on synthesis constraints
+  configurable_features:
+    shape:
+      mutable: false  # Default to fixed; set true if multi-morphology synthesis is available
+
+  # Physical and synthesizability bounds for continuous features (to be calibrated post-EDA)
+  physical_bounds:
+    particle_size_nm:
+      min: 1.0     # Placeholder minimum diameter (nm)
+      max: 100.0   # Placeholder maximum diameter (nm)
+    zeta_potential_mv:
+      min: -60.0   # Placeholder minimum surface potential (mV)
+      max: 60.0    # Placeholder maximum surface potential (mV)
+
+targets:
+  mammalian_viability:
+    name: "cell_viability_pct"
+    description: "Mammalian cell viability percentage after exposure"
+    threshold: 80.0  # Viability >= 80% considered non-cytotoxic / biocompatible
+    direction: "maximize"
+
+  bacterial_mic:
+    name: "mic_ug_ml"
+    description: "Minimum inhibitory concentration (MIC, ug/mL) against target bacterial strain"
+    threshold: 16.0  # MIC <= 16 ug/mL considered potent/effective
+    direction: "minimize"
+
+models:
+  baseline_models:
+    - "random_forest"
+    - "xgboost"
+    - "catboost"
+
+counterfactuals:
+  method: "dice"
+  total_cfs: 5
+  desired_class: "opposite"
+  proximity_weight: 0.5
+  diversity_weight: 1.0
