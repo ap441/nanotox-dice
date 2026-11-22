@@ -13,3 +13,4 @@ openpyxl
 jupyter
 ipykernel
 pytest
+datasets

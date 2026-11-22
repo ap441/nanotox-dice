@@ -2,6 +2,7 @@
 
 import importlib.metadata
 import catboost
+import datasets
 import dice_ml
 import numpy as np
 import pandas as pd
@@ -12,11 +13,12 @@ import xgboost
 
 
 def test_core_imports():
-    """Verify that core numerical, scientific, and ML libraries import properly."""
+    """Verify that core numerical, scientific, and data libraries import properly."""
     assert np is not None
     assert pd is not None
     assert scipy is not None
     assert sklearn.__version__ is not None
+    assert datasets.__version__ is not None
 
 
 def test_model_libraries():
