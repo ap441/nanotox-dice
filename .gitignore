@@ -1,0 +1,72 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Data files (raw CSV / XLSX / tabular data)
+data/raw/*.csv
+data/raw/*.tsv
+data/raw/*.xlsx
+data/raw/*.xls
+*.csv
+*.tsv
+*.xlsx
+*.xls
+
+# Never ignore .gitkeep files in data or results
+!**/data/**/.gitkeep
+!**/results/**/.gitkeep
+!**/.gitkeep
+
+# Model weights / serialized artifacts
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.onnx
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# IDE & OS metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
