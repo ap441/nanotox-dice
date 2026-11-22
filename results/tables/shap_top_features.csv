@@ -1,0 +1,31 @@
+task,rank,feature,mean_abs_shap,relative_importance_pct
+cytotox,1,concentration,0.061,11.93
+cytotox,2,time_hr,0.03503,6.85
+cytotox,3,is_coated,0.03061,5.99
+cytotox,4,zeta_potential_mv,0.03047,5.96
+cytotox,5,surface_coating_Uncoated,0.02936,5.74
+cytotox,6,particle_size_nm,0.01861,3.64
+cytotox,7,core_material_Fe3O4,0.01464,2.86
+cytotox,8,core_material_ZnO,0.01358,2.66
+cytotox,9,core_material_Ag,0.01225,2.4
+cytotox,10,core_material_TiO2,0.01126,2.2
+cytotox,11,test_assay_MTT,0.01066,2.09
+cytotox,12,cell_type_HUVEC,0.00899,1.76
+cytotox,13,cell_type_HepG2,0.00748,1.46
+cytotox,14,core_material_SiO2,0.00737,1.44
+cytotox,15,shape_spherical,0.00737,1.44
+seltox,1,particle_size_nm,0.09732,18.56
+seltox,2,core_material_Ag,0.06938,13.24
+seltox,3,mdr,0.03909,7.46
+seltox,4,zeta_potential_mv,0.03452,6.58
+seltox,5,shape_unknown,0.0272,5.19
+seltox,6,bacteria_Escherichia coli,0.02554,4.87
+seltox,7,bacteria_Staphylococcus aureus,0.01879,3.58
+seltox,8,is_coated,0.01672,3.19
+seltox,9,shape_spherical,0.01513,2.89
+seltox,10,time_hr,0.01501,2.86
+seltox,11,bacteria_Pseudomonas aeruginosa,0.01396,2.66
+seltox,12,shape_cubic,0.01391,2.65
+seltox,13,bacteria_Enterococcus faecalis,0.00963,1.84
+seltox,14,bacteria_Klebsiella pneumoniae,0.00859,1.64
+seltox,15,core_material_CuO,0.00786,1.5
