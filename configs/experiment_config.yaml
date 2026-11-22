@@ -1,54 +1,84 @@
 # Safe-by-Design Nanotoxicology with Constrained Counterfactuals (DiCE)
 # Central Experiment & Pipeline Configuration
+# Calibrated against schema audit: docs/DATA_AUDIT.md
 
 project:
   name: "nanotox-dice"
   description: "Safe-by-Design nanoparticle engineering via constrained counterfactual explanations (DiCE)"
-  version: "0.1.0"
+  version: "0.2.0"
 
 experiment:
   random_seed: 42
-  test_size: 0.20
+  test_size: 0.2
   cv_folds: 5
+  group_split_col: "doi"
 
-features:
-  # Fixed features that cannot be modified post-synthesis or during redesign
-  immutable_features:
+materials:
+  # 16 overlapping materials identified between cytotox and seltox cohorts
+  shared_materials:
+    - "Ag"
+    - "Al2O3"
+    - "Au"
+    - "Bi2O3"
+    - "CeO2"
+    - "Co"
+    - "Cu"
+    - "Cu2O"
+    - "CuO"
+    - "Fe3O4"
+    - "Mo"
+    - "Ni"
+    - "Pt"
+    - "TiO2"
+    - "ZnO"
+    - "ZrO2"
+
+  # Core materials with abundant data across both mammalian viability and bacterial MIC targets
+  high_priority_materials:
+    - "Ag"
+    - "ZnO"
+    - "CuO"
+    - "TiO2"
+    - "Au"
+    - "Fe3O4"
+
+# Synthesizability and physical bounds calibrated to observed 5th-95th empirical percentiles
+physical_bounds:
+  particle_size_nm:
+    cytotox: [5.0, 350.0]      # DLS hydrodynamic diameter range in mammalian media
+    dual_target: [5.0, 100.0]  # Overlap domain compatible with both DLS and TEM cohorts
+  zeta_potential_mv: [-45.0, 35.0]
+
+# Task-specific feature role definitions for counterfactual search (fixed vs. mutable levers)
+feature_roles:
+  cytotox_immutable:
     - "core_material"
-    - "bacterial_strain"
-
-  # Tunable design levers that can be modified within physical/chemical bounds
-  mutable_features:
+    - "cell_type"
+    - "concentration"
+    - "time_hr"
+    - "test_assay"
+  cytotox_mutable:
     - "particle_size_nm"
     - "zeta_potential_mv"
     - "surface_coating"
+    - "is_coated"
+    - "shape"
+  seltox_immutable:
+    - "core_material"
+    - "bacteria"
+    - "mdr"
+    - "time_hr"
+  seltox_mutable:
+    - "particle_size_nm"
+    - "zeta_potential_mv"
+    - "is_coated"
+    - "shape"
 
-  # Configurable features: can be toggled mutable or immutable depending on synthesis constraints
-  configurable_features:
-    shape:
-      mutable: false  # Default to fixed; set true if multi-morphology synthesis is available
-
-  # Physical and synthesizability bounds for continuous features (to be calibrated post-EDA)
-  physical_bounds:
-    particle_size_nm:
-      min: 1.0     # Placeholder minimum diameter (nm)
-      max: 100.0   # Placeholder maximum diameter (nm)
-    zeta_potential_mv:
-      min: -60.0   # Placeholder minimum surface potential (mV)
-      max: 60.0    # Placeholder maximum surface potential (mV)
-
-targets:
-  mammalian_viability:
-    name: "cell_viability_pct"
-    description: "Mammalian cell viability percentage after exposure"
-    threshold: 80.0  # Viability >= 80% considered non-cytotoxic / biocompatible
-    direction: "maximize"
-
-  bacterial_mic:
-    name: "mic_ug_ml"
-    description: "Minimum inhibitory concentration (MIC, ug/mL) against target bacterial strain"
-    threshold: 16.0  # MIC <= 16 ug/mL considered potent/effective
-    direction: "minimize"
+# Biocompatibility and antimicrobial efficacy target criteria
+target_thresholds:
+  viability_biocompatible_min: 70.0  # ISO 10993-5 medical device biological evaluation standard (% viability)
+  viability_clip_max: 120.0          # Upper clip bound to filter out assay noise / hormesis artifacts
+  mic_active_max_ug_ml: 64.0         # Potent antibacterial activity cutoff (µg/mL)
 
 models:
   baseline_models:
